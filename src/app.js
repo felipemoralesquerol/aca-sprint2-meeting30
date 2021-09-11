@@ -42,31 +42,49 @@ routes.get('/', function (req, res) {
 });
 
 routes.get('/now', async function (req, res) {
-    // TODO: Usar un controller
-    const data = await sequelize.query("select now()", { type: QueryTypes.SELECT });
-    res.json(data);
+    try {
+        // TODO: Usar un controller
+        const data = await sequelize.query("select now()", { type: QueryTypes.SELECT });
+        res.json(data);
+    }
+    catch (err) {
+        console.log(err.message);
+        res.json({ 'status': 'Error interno' })
+    }
 });
 
 routes.get('/productos', async function (req, res) {
-    Producto.sync();
-    // TODO: Usar un controller
-    const data = await Producto.findAll();
-    res.json(data);
+    try {
+        Producto.sync();
+        // TODO: Usar un controller
+        const data = await Producto.findAll();
+        res.json(data);
+    }
+    catch (err) {
+        console.log(err.message);
+        res.json({ 'status': 'Error interno' })
+    }
 });
 
 routes.get('/productos/sample', async function (req, res) {
-    Producto.sync();
-    // TODO: Usar un controller
-    const data = await Producto.create({
-        nombre: 'sample',
-        descripcion: 'sample',
-        precio: 100
-    });
-    const dataSaved = await data.save();
-    res.json({ data, dataSaved });
+    try {
+        Producto.sync();
+        // TODO: Usar un controller
+        const data = await Producto.create({
+            nombre: 'sample',
+            descripcion: 'sample',
+            precio: 100
+        });
+        const dataSaved = await data.save();
+        res.json({ data, dataSaved });
+    }
+    catch (err) {
+        console.log(err.message);
+        res.json({ 'status': 'Error interno' })
+    }
 });
 
-app.use('/', routes);
+app.use('/api', routes);
 
 app.listen(3000, () => {
     console.log('listening on port 3000');
