@@ -30,27 +30,31 @@ const Producto = sequelize.define('productos', {
 
 
 const app = express();
+const { Router } = express();
 app.use(morgan('short'));
 
+const routes = express.Router();
+
+
 // TODO: Usar routes
-app.get('/', function (req, res) {
+routes.get('/', function (req, res) {
     res.send('Hello World')
 });
 
-app.get('/now', async function (req, res) {
+routes.get('/now', async function (req, res) {
     // TODO: Usar un controller
     const data = await sequelize.query("select now()", { type: QueryTypes.SELECT });
     res.json(data);
 });
 
-app.get('/productos', async function (req, res) {
+routes.get('/productos', async function (req, res) {
     Producto.sync();
     // TODO: Usar un controller
     const data = await Producto.findAll();
     res.json(data);
 });
 
-app.get('/productos/sample', async function (req, res) {
+routes.get('/productos/sample', async function (req, res) {
     Producto.sync();
     // TODO: Usar un controller
     const data = await Producto.create({
@@ -62,6 +66,7 @@ app.get('/productos/sample', async function (req, res) {
     res.json({ data, dataSaved });
 });
 
+app.use('/', routes);
 
 app.listen(3000, () => {
     console.log('listening on port 3000');
