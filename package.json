@@ -1,17 +1,21 @@
 {
-  "name": "aca-boilerplate",
+  "name": "aca-sprint2-meeting30",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon api/app",
+    "test": "mocha"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "chai": "^4.3.4",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
-    "morgan": "^1.10.0"
+    "mocha": "^9.1.1",
+    "morgan": "^1.10.0",
+    "node-fetch": "^2.6.2"
   }
 }
