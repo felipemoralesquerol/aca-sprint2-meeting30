@@ -1,10 +1,11 @@
 const assert = require('chai').assert;
 const fetch = require('node-fetch')
+const urlAPI = 'http://localhost:3000/api';
 
 describe("Probando API Auth", () => {
 
     it("API responde 200", async () => {
-        await fetch('http://localhost:3000/api/me')
+        await fetch(urlAPI + '/me')
             .then(response => {
                 console.log(response.status)
                 assert.equal(response.status, 200);

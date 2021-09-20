@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon api/app",
+    "dev": "npx kill-port 3000 && nodemon api/app",
+    "coverage": "open coverage/index.html",
     "test": "mocha"
   },
   "keywords": [],
