@@ -13,6 +13,9 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    env: 
+      JWT_SECRET_KEY: secret_key_ci
+      JWT_EXPIRES_IN: 30h
 
     strategy:
       matrix:
