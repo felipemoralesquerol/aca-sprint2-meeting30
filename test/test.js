@@ -1,4 +1,4 @@
-const { suma, resta } = require('./../api/utils/utils')
+const { suma, resta } = require('../api/utils/utils')
 
 var assert = require('assert');
 describe('suma', function () {
