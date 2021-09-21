@@ -7,9 +7,31 @@
 	"item": [
 		{
 			"name": "signin",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody); ",
+							"var token = jsonData.token; ",
+							"postman.setEnvironmentVariable(\"token\", token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"usuario\": \"felipe\",\n    \"password\": \"1234\",\n    \"email\": \"felipe.morales.querol@gmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "http://localhost:3000/api/signin",
 					"protocol": "http",
@@ -27,9 +49,38 @@
 		},
 		{
 			"name": "signup",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody); ",
+							"var token = jsonData.token; ",
+							"postman.setEnvironmentVariable(\"token\", token);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"usuario\": \"felipe\",\n    \"password\": \"1234\",\n    \"email\": \"felipe.morales.querol@gmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "http://localhost:3000/api/signup",
 					"protocol": "http",
@@ -49,7 +100,13 @@
 			"name": "me",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:3000/api/me",
 					"protocol": "http",
