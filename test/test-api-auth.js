@@ -1,6 +1,7 @@
+require('dotenv').config();
 const assert = require('chai').assert;
 const fetch = require('node-fetch')
-const urlAPI = 'http://localhost:3000/api';
+const urlAPI = 'http://localhost:' + process.env.WEB_PORT + '/api';
 
 
 describe("Probando API Auth", () => {
