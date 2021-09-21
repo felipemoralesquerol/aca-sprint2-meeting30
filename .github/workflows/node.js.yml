@@ -14,6 +14,7 @@ jobs:
 
     runs-on: ubuntu-latest
     env: 
+      WEB_PORT: 7000
       JWT_SECRET_KEY: secret_key_ci
       JWT_EXPIRES_IN: 30h
 
