@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "npx kill-port 7000 && nodemon api/app",
-    "coverage": "open coverage/index.html",
+    "start": "node api/app",
     "test": "mocha"
   },
   "keywords": [],
