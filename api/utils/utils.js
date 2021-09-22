@@ -8,7 +8,7 @@ function resta(a, b) {
 };
 
 function dividir(a, b) {
-    return a / B
+    return a / b
 };
 
 module.exports = { suma, resta, dividir };
