@@ -1,0 +1,54 @@
+// Escribe un script que realice una llamada a la API the https://api.openweathermap.org/
+// para realizar las siguientes validaciones:
+// Que la API esté “viva” (status code === 200).
+// Que la API responda correctamente el clima de la ciudad donde vives.
+// Que la API responda lo esperado cuando solicitas el clima de una ciudad que no existe.
+
+require('dotenv').config();
+const assert = require('chai').assert;
+const fetch = require('node-fetch')
+const urlAPI = 'http://api.openweathermap.org/data/2.5';
+const APPID = '&APPID=' + process.env.OPENWEATHERMAP_APIKEY;
+const city = 'La Plata, AR'
+
+
+describe("Probando API Auth", () => {
+
+    it("1.API live", async () => {
+        url =
+            await fetch(urlAPI + '/weather?q=' + city + APPID)
+                .then(async response => {
+                    //console.log(response);
+                    const json = await response.json();
+                    //console.log(json);
+                    assert.equal(response.status, 200);
+                })
+    });
+
+
+    it("1.API weather city OK", async () => {
+        url =
+            await fetch(urlAPI + '/weather?q=' + city + APPID)
+                .then(async response => {
+                    //console.log(response);
+                    const json = await response.json();
+                    //console.log(json);
+                    //console.log(json.main.temp);
+                    assert.exists(json.main.temp);
+                })
+    });
+
+
+    it("1.API weather city 404", async () => {
+        url =
+            await fetch(urlAPI + '/weather?q=xyzxyzyxz1234' + APPID)
+                .then(async response => {
+                    //console.log(response);
+                    const json = await response.json();
+                    //console.log(json);
+                    //console.log(json.main.temp);
+                    assert.equal(response.status, 404);
+                })
+    });
+
+});
