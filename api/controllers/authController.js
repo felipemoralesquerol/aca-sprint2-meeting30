@@ -39,7 +39,7 @@ exports.signup = function signup(req, res, next) {
         jwt.sign(req.body, process.env.JWT_SECRET_KEY, { expiresIn: process.env.JWT_EXPIRES_IN }, (err, token) => {
             if (err) {
                 console.error("Error interno: " + err.message);
-                res.status(500).send({ status: 'Error interno' })
+                res.status(403).send({ status: 'Error interno' })
             } else {
                 req.token = token;
                 res.json({ status: 'signup', token });
